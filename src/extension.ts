@@ -1,12 +1,20 @@
 import * as vscode from "vscode";
-import { restartTsServer } from "./helper";
-import { joinNamespaceStr } from "./utils";
+import { getExtensionCommand } from "./utils";
+import { restartTsServer, restartEslintServer, restartVueServer } from "./helper";
 
 /** 注册的命令数组 */
 const commandList: Array<vscode.Disposable> = [
   vscode.commands.registerCommand(
-    joinNamespaceStr("restartTsServer"),
+    getExtensionCommand("restartTsServer"),
     restartTsServer
+  ),
+  vscode.commands.registerCommand(
+    getExtensionCommand("restartEslintServer"),
+    restartEslintServer
+  ),
+  vscode.commands.registerCommand(
+    getExtensionCommand("restartVueServer"),
+    restartVueServer
   ),
 ];
 
