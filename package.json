@@ -1,7 +1,7 @@
 {
   "name": "restart-vscode-server",
   "displayName": "Restart VSCode Server",
-  "description": "A VSCode extension for restarting services, such as the TypeScript service or the ESLint service.",
+  "description": "A VSCode extension for restarting services.",
   "publisher": "mulingyuer",
   "version": "0.0.1",
   "engines": {
