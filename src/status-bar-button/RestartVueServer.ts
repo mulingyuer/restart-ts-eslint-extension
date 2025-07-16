@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:31:10
- * @LastEditTime: 2025-07-16 09:49:30
+ * @LastEditTime: 2025-07-16 10:10:33
  * @LastEditors: mulingyuer
  * @Description: 重启Vue服务按钮
  * @FilePath: \restart-vscode-server\src\status-bar-button\RestartVueServer.ts
@@ -18,6 +18,7 @@ export class RestartVueServer extends BaseStatusButton {
       alignment: vscode.StatusBarAlignment.Left,
       priority: getStatusBarPriority(),
       command: getExtensionCommand("restartVueServer"),
+      icon: "debug-restart",
       text: "重启Vue",
     });
   }

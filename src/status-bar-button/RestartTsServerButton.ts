@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:27:51
- * @LastEditTime: 2025-07-16 09:49:21
+ * @LastEditTime: 2025-07-16 10:10:29
  * @LastEditors: mulingyuer
  * @Description: 重启TypeScript服务按钮
  * @FilePath: \restart-vscode-server\src\status-bar-button\RestartTsServerButton.ts
@@ -27,6 +27,7 @@ export class RestartTsServerButton extends BaseStatusButton {
       alignment: vscode.StatusBarAlignment.Left,
       priority: getStatusBarPriority(),
       command: getExtensionCommand("restartTsServer"),
+      icon: "debug-restart",
       text: "重启TS",
     });
   }

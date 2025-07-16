@@ -4,13 +4,15 @@ import {
   restartTsServer,
   restartEslintServer,
   restartVueServer,
+  reloadWindow,
 } from "./helper";
 import {
   RestartTsServerButton,
   RestartEslintServerButton,
   RestartVueServer,
-  type BaseStatusButton,
+  ReloadWindowButton,
 } from "./status-bar-button";
+import type { BaseStatusButton } from "./status-bar-button";
 
 /** 注册命令 */
 function registerCommand(context: vscode.ExtensionContext) {
@@ -27,6 +29,10 @@ function registerCommand(context: vscode.ExtensionContext) {
       getExtensionCommand("restartVueServer"),
       restartVueServer
     ),
+    vscode.commands.registerCommand(
+      getExtensionCommand("reloadWindow"),
+      reloadWindow
+    ),
   ];
 
   context.subscriptions.push(...commandList);
@@ -38,7 +44,8 @@ function createStatusBarBtns() {
   statusBarBtnList.push(
     new RestartTsServerButton(),
     new RestartEslintServerButton(),
-    new RestartVueServer()
+    new RestartVueServer(),
+    new ReloadWindowButton()
   );
 }
 function updateStatusBarBtnVisibility() {

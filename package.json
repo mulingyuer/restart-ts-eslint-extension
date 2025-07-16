@@ -2,6 +2,7 @@
   "name": "restart-vscode-server",
   "displayName": "Restart VSCode Server",
   "description": "A VSCode extension for restarting services, such as the TypeScript service or the ESLint service.",
+  "publisher": "mulingyuer",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
@@ -30,7 +31,8 @@
   "extensionCommands": {
     "restartTsServer": "restart-vscode-server.restartTsServer",
     "restartEslintServer": "restart-vscode-server.restartEslintServer",
-    "restartVueServer": "restart-vscode-server.restartVueServer"
+    "restartVueServer": "restart-vscode-server.restartVueServer",
+    "reloadWindow": "restart-vscode-server.reloadWindow"
   },
   "contributes": {
     "commands": [
@@ -45,6 +47,10 @@
       {
         "command": "restart-vscode-server.restartVueServer",
         "title": "重启 Vue 服务"
+      },
+      {
+        "command": "restart-vscode-server.reloadWindow",
+        "title": "重启 VSCode"
       }
     ]
   },

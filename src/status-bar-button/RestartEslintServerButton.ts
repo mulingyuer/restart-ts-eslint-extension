@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:30:20
- * @LastEditTime: 2025-07-16 09:49:09
+ * @LastEditTime: 2025-07-16 10:10:22
  * @LastEditors: mulingyuer
  * @Description: 重启ESLint服务按钮
  * @FilePath: \restart-vscode-server\src\status-bar-button\RestartEslintServerButton.ts
@@ -18,6 +18,7 @@ export class RestartEslintServerButton extends BaseStatusButton {
       alignment: vscode.StatusBarAlignment.Left,
       priority: getStatusBarPriority(),
       command: getExtensionCommand("restartEslintServer"),
+      icon: "debug-restart",
       text: "重启ESLint",
     });
   }

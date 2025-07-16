@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-14 21:53:49
- * @LastEditTime: 2025-07-15 21:32:54
+ * @LastEditTime: 2025-07-16 10:04:05
  * @LastEditors: mulingyuer
  * @Description: 帮助函数
  * @FilePath: \restart-vscode-server\src\helper.ts
@@ -73,6 +73,16 @@ export async function restartVueServer(): Promise<void> {
     vscode.window.showInformationMessage("Vue 服务已重启");
   } catch (error) {
     vscode.window.showErrorMessage("Vue 服务重启失败，请检查控制台输出");
+    console.error(error);
+  }
+}
+
+/** 重启 VSCode */
+export async function reloadWindow(): Promise<void> {
+  try {
+    await vscode.commands.executeCommand("workbench.action.reloadWindow");
+  } catch (error) {
+    vscode.window.showErrorMessage("重启失败，请检查控制台输出");
     console.error(error);
   }
 }

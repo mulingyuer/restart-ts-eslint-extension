@@ -1,10 +1,10 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:20:32
- * @LastEditTime: 2025-07-15 22:40:16
+ * @LastEditTime: 2025-07-16 10:11:57
  * @LastEditors: mulingyuer
  * @Description: 状态按钮基类
- * @FilePath: \restart-vscode-server\src\status-bar-button\baseButton.ts
+ * @FilePath: \restart-vscode-server\src\status-bar-button\BaseButton.ts
  * 怎么可能会有bug！！！
  */
 import * as vscode from "vscode";
@@ -21,6 +21,8 @@ export interface BaseStatusButtonOptions {
   icon?: string;
   /** 显示的文本 */
   text: string;
+  /** 显示的提示 */
+  tooltip?: string;
 }
 
 export abstract class BaseStatusButton {
@@ -33,8 +35,14 @@ export abstract class BaseStatusButton {
       options.priority ?? 1
     );
     this.button.command = options.command;
-    options.icon = options.icon ?? "debug-restart";
-    this.button.text = `$(${options.icon}) ${options.text}`;
+    if (typeof options.icon === "string" && options.icon.trim() !== "") {
+      this.button.text = `$(${options.icon}) ${options.text}`;
+    } else {
+      this.button.text = options.text;
+    }
+    if (options.tooltip) {
+      this.button.tooltip = options.tooltip;
+    }
   }
 
   public getButton(): vscode.StatusBarItem {
