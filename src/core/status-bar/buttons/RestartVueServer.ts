@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:31:10
- * @LastEditTime: 2025-07-16 17:05:05
+ * @LastEditTime: 2025-07-16 17:49:01
  * @LastEditors: mulingyuer
  * @Description: 重启Vue服务按钮
  * @FilePath: \restart-vscode-server\src\core\status-bar\buttons\RestartVueServer.ts
@@ -16,7 +16,7 @@ import {
 } from "@/utils/tools";
 import { VUE_EXTENSION_ID } from "@/constant";
 
-export class RestartVueServer extends BaseStatusButton {
+export class RestartVueServerButton extends BaseStatusButton {
   constructor() {
     super({
       alignment: vscode.StatusBarAlignment.Left,

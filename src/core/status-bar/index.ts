@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-16 16:35:12
- * @LastEditTime: 2025-07-16 17:27:40
+ * @LastEditTime: 2025-07-16 17:52:39
  * @LastEditors: mulingyuer
  * @Description: 状态栏
  * @FilePath: \restart-vscode-server\src\core\status-bar\index.ts
@@ -15,7 +15,7 @@ import {
   ReloadWindowButton,
   RestartEslintServerButton,
   RestartTsServerButton,
-  RestartVueServer,
+  RestartVueServerButton,
 } from "./buttons";
 
 export class StatusBar implements Register {
@@ -38,14 +38,12 @@ export class StatusBar implements Register {
 
   /** 根据配置生成状态栏按钮 */
   private generateButtons(): BaseStatusButton[] {
-    const buttons: BaseStatusButton[] = [
+    return [
       new RestartTsServerButton(),
       new RestartEslintServerButton(),
-      new RestartVueServer(),
+      new RestartVueServerButton(),
       new ReloadWindowButton(),
     ];
-
-    return buttons;
   }
 
   /** 注册状态栏按钮 */
@@ -61,36 +59,34 @@ export class StatusBar implements Register {
 
   /** 更新状态栏按钮的可见性 */
   private updateVisibility() {
-    console.log(12937131, this.buttons);
     this.buttons.forEach((btn) => btn.updateVisibility());
   }
 
   /** 事件订阅 */
   private subscribeEvent() {
+    const updateVisibility = this.updateVisibility.bind(this);
+
     // 当活动文本编辑器发生变化时触发，例如用户从一个文件切换到另一个文件
-    const activeTextEditorListener = vscode.window.onDidChangeActiveTextEditor(
-      this.updateVisibility
-    );
+    const activeTextEditorListener =
+      vscode.window.onDidChangeActiveTextEditor(updateVisibility);
     this.context.subscriptions.push(activeTextEditorListener);
     this.eventList.push(activeTextEditorListener);
 
     // 当文本编辑器中的选区发生变化时触发，例如用户移动光标或选择文本
     const textEditorSelectionListener =
-      vscode.window.onDidChangeTextEditorSelection(this.updateVisibility);
+      vscode.window.onDidChangeTextEditorSelection(updateVisibility);
     this.context.subscriptions.push(textEditorSelectionListener);
     this.eventList.push(textEditorSelectionListener);
 
     // 当一个文档被关闭时触发
-    const textDocumentCloseListener = vscode.workspace.onDidCloseTextDocument(
-      this.updateVisibility
-    );
+    const textDocumentCloseListener =
+      vscode.workspace.onDidCloseTextDocument(updateVisibility);
     this.context.subscriptions.push(textDocumentCloseListener);
     this.eventList.push(textDocumentCloseListener);
 
     // 当一个文档被打开时触发
-    const textDocumentOpenListener = vscode.workspace.onDidOpenTextDocument(
-      this.updateVisibility
-    );
+    const textDocumentOpenListener =
+      vscode.workspace.onDidOpenTextDocument(updateVisibility);
     this.context.subscriptions.push(textDocumentOpenListener);
     this.eventList.push(textDocumentOpenListener);
 
@@ -116,7 +112,7 @@ export class StatusBar implements Register {
           affectsEnableReloadWindow;
 
         if (isAffected) {
-          this.updateVisibility();
+          updateVisibility();
         }
       }
     );
