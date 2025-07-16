@@ -55,7 +55,7 @@
       // 设置为 true 来启用“重启 TypeScript 服务”功能
       "restart-vscode-server.enableRestartTsServer": false,
 
-      // 设置为 true 来启用“重启 Volar (Vue) 服务”功能
+      // 设置为 true 来启用“重启 Vue (Official) 服务”功能
       "restart-vscode-server.enableRestartVueServer": false
     }
     ```
