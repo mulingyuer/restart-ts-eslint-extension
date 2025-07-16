@@ -1,13 +1,17 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:27:51
- * @LastEditTime: 2025-07-16 10:10:29
+ * @LastEditTime: 2025-07-16 17:04:46
  * @LastEditors: mulingyuer
  * @Description: 重启TypeScript服务按钮
- * @FilePath: \restart-vscode-server\src\status-bar-button\RestartTsServerButton.ts
+ * @FilePath: \restart-vscode-server\src\core\status-bar\buttons\RestartTsServerButton.ts
  * 怎么可能会有bug！！！
  */
-import { getExtensionCommand, getStatusBarPriority } from "../utils";
+import {
+  getExtensionCommand,
+  getExtensionConfig,
+  getStatusBarPriority,
+} from "@/utils/tools";
 import { BaseStatusButton } from "./BaseButton";
 import * as vscode from "vscode";
 
@@ -34,6 +38,12 @@ export class RestartTsServerButton extends BaseStatusButton {
 
   protected async shouldShow(): Promise<boolean> {
     try {
+      const config = getExtensionConfig();
+      const enable = config.get("enableRestartTsServer") as boolean;
+      if (!enable) {
+        return false;
+      }
+
       const { activeTextEditor } = vscode.window;
       if (activeTextEditor?.document) {
         if (

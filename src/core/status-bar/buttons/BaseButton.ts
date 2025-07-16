@@ -1,14 +1,14 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:20:32
- * @LastEditTime: 2025-07-16 10:11:57
+ * @LastEditTime: 2025-07-16 16:44:45
  * @LastEditors: mulingyuer
  * @Description: 状态按钮基类
- * @FilePath: \restart-vscode-server\src\status-bar-button\BaseButton.ts
+ * @FilePath: \restart-vscode-server\src\core\status-bar\buttons\BaseButton.ts
  * 怎么可能会有bug！！！
  */
 import * as vscode from "vscode";
-import { EXTENSION_NAME } from "../constant";
+import { EXTENSION_NAME } from "@/constant";
 
 export interface BaseStatusButtonOptions {
   /** 位置 */
@@ -55,6 +55,10 @@ export abstract class BaseStatusButton {
 
   public hide(): void {
     this.button.hide();
+  }
+
+  public dispose(): void {
+    this.button.dispose();
   }
 
   /** 是否显示按钮 */

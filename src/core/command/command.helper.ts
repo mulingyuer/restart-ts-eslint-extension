@@ -1,17 +1,17 @@
 /*
  * @Author: mulingyuer
- * @Date: 2025-07-14 21:53:49
- * @LastEditTime: 2025-07-16 10:04:05
+ * @Date: 2025-07-16 14:29:24
+ * @LastEditTime: 2025-07-16 14:29:38
  * @LastEditors: mulingyuer
- * @Description: 帮助函数
- * @FilePath: \restart-vscode-server\src\helper.ts
+ * @Description: 指令帮助方法
+ * @FilePath: \restart-vscode-server\src\core\command\command.helper.ts
  * 怎么可能会有bug！！！
  */
 import {
-  TYPE_SCRIPT_EXTENSION_ID,
   ES_LINT_EXTENSION_ID,
+  TYPE_SCRIPT_EXTENSION_ID,
   VUE_EXTENSION_ID,
-} from "./constant";
+} from "@/constant";
 import * as vscode from "vscode";
 
 /** 重启 TypeScript 服务 */

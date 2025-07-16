@@ -34,6 +34,12 @@
     "restartVueServer": "restart-vscode-server.restartVueServer",
     "reloadWindow": "restart-vscode-server.reloadWindow"
   },
+  "extensionConfigFullPath": {
+    "restartTsServer": "restart-vscode-server.enableRestartTsServer",
+    "restartEslintServer": "restart-vscode-server.enableRestartEslintServer",
+    "restartVueServer": "restart-vscode-server.enableRestartVueServer",
+    "reloadWindow": "restart-vscode-server.enableReloadWindow"
+  },
   "contributes": {
     "commands": [
       {
@@ -52,7 +58,52 @@
         "command": "restart-vscode-server.reloadWindow",
         "title": "重启 VSCode"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "restart-vscode-server.restartTsServer",
+          "when": "config.restart-vscode-server.enableRestartTsServer"
+        },
+        {
+          "command": "restart-vscode-server.restartEslintServer",
+          "when": "config.restart-vscode-server.enableRestartEslintServer"
+        },
+        {
+          "command": "restart-vscode-server.restartVueServer",
+          "when": "config.restart-vscode-server.enableRestartVueServer"
+        },
+        {
+          "command": "restart-vscode-server.reloadWindow",
+          "when": "config.restart-vscode-server.enableReloadWindow"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Restart VSCode Server",
+      "properties": {
+        "restart-vscode-server.enableRestartTsServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用重启 TypeScript 服务"
+        },
+        "restart-vscode-server.enableRestartEslintServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用重启 ESLint 服务"
+        },
+        "restart-vscode-server.enableRestartVueServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用重启 Vue 服务"
+        },
+        "restart-vscode-server.enableReloadWindow": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用重启 VSCode"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
