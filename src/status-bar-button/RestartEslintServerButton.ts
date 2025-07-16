@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:30:20
- * @LastEditTime: 2025-07-15 23:37:29
+ * @LastEditTime: 2025-07-16 09:49:09
  * @LastEditors: mulingyuer
  * @Description: 重启ESLint服务按钮
  * @FilePath: \restart-vscode-server\src\status-bar-button\RestartEslintServerButton.ts
@@ -9,13 +9,14 @@
  */
 import { BaseStatusButton } from "./BaseButton";
 import * as vscode from "vscode";
-import { getExtensionCommand } from "../utils";
+import { getExtensionCommand, getStatusBarPriority } from "../utils";
 import { ES_LINT_EXTENSION_ID } from "../constant";
 
 export class RestartEslintServerButton extends BaseStatusButton {
   constructor() {
     super({
       alignment: vscode.StatusBarAlignment.Left,
+      priority: getStatusBarPriority(),
       command: getExtensionCommand("restartEslintServer"),
       text: "重启ESLint",
     });

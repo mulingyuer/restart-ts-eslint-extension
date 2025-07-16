@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:31:10
- * @LastEditTime: 2025-07-15 23:22:30
+ * @LastEditTime: 2025-07-16 09:49:30
  * @LastEditors: mulingyuer
  * @Description: 重启Vue服务按钮
  * @FilePath: \restart-vscode-server\src\status-bar-button\RestartVueServer.ts
@@ -9,13 +9,14 @@
  */
 import { BaseStatusButton } from "./BaseButton";
 import * as vscode from "vscode";
-import { getExtensionCommand } from "../utils";
+import { getExtensionCommand, getStatusBarPriority } from "../utils";
 import { VUE_EXTENSION_ID } from "../constant";
 
 export class RestartVueServer extends BaseStatusButton {
   constructor() {
     super({
       alignment: vscode.StatusBarAlignment.Left,
+      priority: getStatusBarPriority(),
       command: getExtensionCommand("restartVueServer"),
       text: "重启Vue",
     });

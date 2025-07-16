@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-14 21:55:20
- * @LastEditTime: 2025-07-15 16:16:27
+ * @LastEditTime: 2025-07-16 09:46:31
  * @LastEditors: mulingyuer
  * @Description: 常量
  * @FilePath: \restart-vscode-server\src\constant.ts
@@ -19,3 +19,6 @@ export const EXTENSION_NAME = PACKAGE_JSON.name;
 export const TYPE_SCRIPT_EXTENSION_ID = "vscode.typescript-language-features";
 export const ES_LINT_EXTENSION_ID = "dbaeumer.vscode-eslint";
 export const VUE_EXTENSION_ID = "Vue.volar";
+
+/** 左侧状态栏按钮优先级 */
+export const STATUS_BAR_PRIORITY = 100;

@@ -24,8 +24,7 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onLanguage",
-    "workspaceContains:tsconfig.json"
+    "*"
   ],
   "main": "./dist/extension.js",
   "extensionCommands": {
