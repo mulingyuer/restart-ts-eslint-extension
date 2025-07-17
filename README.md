@@ -9,7 +9,7 @@
 1. 🔄 **重启 VS Code 窗口 (Reload Window):** 快速重载 VS Code 窗口，应用新的配置或解决界面异常。
 2. 🔄 **重启 TypeScript 服务 (Restart TS Server):** 解决类型提示错误、自动补全失效等 TS 相关问题。
 3. 🔄 **重启 ESLint 服务 (Restart ESLint Server):** 当 ESLint 规则更新或插件行为异常时，快速重启服务以应用更改。
-4. 🔄 **重启 Volar / Vetur 服务 (Restart Vue Server):** 专为 Vue 开发者设计，解决模板语法高亮、组件定义跳转等问题。
+4. 🔄 **重启 Vue (Official) 服务 (Restart Vue Server):** 专为 Vue 开发者设计，解决模板语法高亮、组件定义跳转等问题。
 
 ## 🚀 如何使用
 
