@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:27:51
- * @LastEditTime: 2025-07-16 17:04:46
+ * @LastEditTime: 2025-07-22 11:10:41
  * @LastEditors: mulingyuer
  * @Description: 重启TypeScript服务按钮
  * @FilePath: \restart-vscode-server\src\core\status-bar\buttons\RestartTsServerButton.ts
@@ -25,6 +25,8 @@ export class RestartTsServerButton extends BaseStatusButton {
     "vue",
     "svelte",
   ];
+  /** 状态缓存，防止重复触发耗时的判断 */
+  private showStatus: boolean | null = null;
 
   constructor() {
     super({
@@ -44,6 +46,11 @@ export class RestartTsServerButton extends BaseStatusButton {
         return false;
       }
 
+      // 使用缓存，减少重复判断
+      if (this.showStatus !== null) {
+        return this.showStatus;
+      }
+
       const { activeTextEditor } = vscode.window;
       if (activeTextEditor?.document) {
         if (
@@ -51,6 +58,7 @@ export class RestartTsServerButton extends BaseStatusButton {
             activeTextEditor.document.languageId
           )
         ) {
+          this.showStatus = true;
           return true;
         }
       }
@@ -64,8 +72,9 @@ export class RestartTsServerButton extends BaseStatusButton {
         "**/tsconfig.json", // 在工作区中查找 tsconfig.json
         "**/node_modules/**" // 排除 node_modules 文件夹
       );
+      this.showStatus = tsconfigFiles.length > 0;
 
-      return tsconfigFiles.length > 0;
+      return this.showStatus;
     } catch {
       return false;
     }

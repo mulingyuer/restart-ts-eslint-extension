@@ -1,7 +1,7 @@
 /*
  * @Author: mulingyuer
  * @Date: 2025-07-15 21:31:10
- * @LastEditTime: 2025-07-16 17:49:01
+ * @LastEditTime: 2025-07-22 11:10:50
  * @LastEditors: mulingyuer
  * @Description: 重启Vue服务按钮
  * @FilePath: \restart-vscode-server\src\core\status-bar\buttons\RestartVueServer.ts
@@ -17,6 +17,9 @@ import {
 import { VUE_EXTENSION_ID } from "@/constant";
 
 export class RestartVueServerButton extends BaseStatusButton {
+  /** 状态缓存，防止重复触发耗时的判断 */
+  private showStatus: boolean | null = null;
+
   constructor() {
     super({
       alignment: vscode.StatusBarAlignment.Left,
@@ -35,6 +38,11 @@ export class RestartVueServerButton extends BaseStatusButton {
         return false;
       }
 
+      // 使用缓存，减少重复判断
+      if (this.showStatus !== null) {
+        return this.showStatus;
+      }
+
       // vue插件是否激活
       const vueExtension = vscode.extensions.getExtension(VUE_EXTENSION_ID);
       if (!vueExtension?.isActive) {
@@ -50,7 +58,9 @@ export class RestartVueServerButton extends BaseStatusButton {
         "**/*.vue",
         "**/node_modules/**"
       );
-      return vueFiles.length > 0;
+      this.showStatus = vueFiles.length > 0;
+
+      return this.showStatus;
     } catch {
       return false;
     }
